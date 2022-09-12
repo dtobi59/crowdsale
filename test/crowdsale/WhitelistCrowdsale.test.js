@@ -11,7 +11,7 @@ contract('WhitelistCrowdsale', function (accounts) {
   const rate = new BN(1);
   const value = ether('42');
   const tokenSupply = new BN('10').pow(new BN('22'));
-  const ROLE = "ff"; //web3.utils.soliditySha3('INVESTOR_WHITELISTED');
+  const ROLE = web3.utils.soliditySha3('INVESTOR_WHITELISTED');
 
   beforeEach(async function () {
     this.token = await SimpleToken.new({ from: whitelister });
