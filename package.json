@@ -1,6 +1,6 @@
 {
   "name": "@dtobi59/crowdsale",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "This is used for initial coin offering",
   "main": "index.js",
   "scripts": {

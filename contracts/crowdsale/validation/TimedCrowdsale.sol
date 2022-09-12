@@ -32,17 +32,17 @@ abstract contract TimedCrowdsale is Crowdsale {
 
     /**
      * @dev Constructor, takes crowdsale opening and closing times.
-     * @param openingTime Crowdsale opening time
-     * @param closingTime Crowdsale closing time
+     * @param openingTime_ Crowdsale opening time
+     * @param closingTime_ Crowdsale closing time
      */
-    constructor (uint256 openingTime, uint256 closingTime) {
+    constructor (uint256 openingTime_, uint256 closingTime_) {
         // solhint-disable-next-line not-rely-on-time
-        require(openingTime >= block.timestamp, "TimedCrowdsale: opening time is before current time");
+        require(openingTime_ >= block.timestamp, "TimedCrowdsale: opening time is before current time");
         // solhint-disable-next-line max-line-length
-        require(closingTime > openingTime, "TimedCrowdsale: opening time is not before closing time");
+        require(closingTime_ > openingTime_, "TimedCrowdsale: opening time is not before closing time");
 
-        _openingTime = openingTime;
-        _closingTime = closingTime;
+        _openingTime = openingTime_;
+        _closingTime = closingTime_;
     }
 
     /**
@@ -84,6 +84,7 @@ abstract contract TimedCrowdsale is Crowdsale {
     function _preValidatePurchase(address beneficiary, uint256 weiAmount) 
     internal 
     override
+    virtual
     onlyWhileOpen
      view {
         super._preValidatePurchase(beneficiary, weiAmount);

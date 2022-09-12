@@ -16,11 +16,11 @@ abstract contract CappedCrowdsale is Crowdsale {
 
     /**
      * @dev Constructor, takes maximum amount of wei accepted in the crowdsale.
-     * @param cap Max amount of wei to be contributed
+     * @param cap_ Max amount of wei to be contributed
      */
-    constructor (uint256 cap) {
-        require(cap > 0, "CappedCrowdsale: cap is 0");
-        _cap = cap;
+    constructor (uint256 cap_) {
+        require(cap_ > 0, "CappedCrowdsale: cap is 0");
+        _cap = cap_;
     }
 
     /**
@@ -46,6 +46,7 @@ abstract contract CappedCrowdsale is Crowdsale {
     function _preValidatePurchase(address beneficiary, uint256 weiAmount) 
     internal 
     override
+    virtual
     view {
         super._preValidatePurchase(beneficiary, weiAmount);
         require(weiRaised().add(weiAmount) <= _cap, "CappedCrowdsale: cap exceeded");
